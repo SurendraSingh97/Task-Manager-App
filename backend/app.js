@@ -15,7 +15,7 @@ const mongoUrl = process.env.MONGODB_URL;
 mongoose.connect(mongoUrl, err => {
   if (err) throw err;
   console.log("Mongodb connected...");
-});
+}).th;
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
