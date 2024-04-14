@@ -9,13 +9,22 @@ const taskRoutes = require("./routes/taskRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+
+const corsOrigin = process.env.CORS_ORIGIN;
+const corsOptions = {
+  origin: corsOrigin,
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 const mongoUrl = process.env.MONGODB_URL;
 mongoose.connect(mongoUrl, err => {
   if (err) throw err;
   console.log("Mongodb connected...");
-}).th;
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
